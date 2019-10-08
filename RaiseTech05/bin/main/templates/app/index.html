@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>index</title>
+<link rel="stylesheet" href="/css/bootstrap.css" />
+<script src="/js/bootstrap.js"></script>
+</head>
+<body>
+
+<div class="container">
+	<h1 class="text-center m-3">業務日付一覧</h1>
+	<hr>
+	<div class="row m-4">
+		<div class="col-6">
+			2019.10.07
+		</div>
+		<button class="col-2 btn btn-dark">計算</button>
+	</div>
+	<!--  <a class="btn btn-dark" href="/app/new">新規作成</a> -->
+
+	<div class="row m-5">
+      <div class="col-md-6">
+        <form th:action="@{/app/search}" method="get">
+          <div class="input-group">
+            <input type="text" name="keyword" class="form-control" placeholder="Search for..." />
+            <span class="input-group-btn">
+              <input class="btn btn-secondary" type="submit" value="Search!" />
+            </span>
+          </div>
+        </form>
+      </div>
+      <div class="col-md-2">
+      	<a href="/app" class="btn btn-link">全表示</a>
+      </div>
+    </div>
+
+	<table class="table m-5">
+		<thead>
+			<tr>
+				<th>ID</th>
+				<th>会社名</th>
+				<th>業務日付</th>
+				<th></th>
+				<th></th>
+				<th></th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="businessday : ${businessdays}" th:object="${businessday}">
+				<td th:text="*{idDays}"></td>
+				<td th:text="*{name}"></td>
+				<td th:text="*{day}"></td>
+				<td><a class="btn btn-secondary btn-xs" th:href="@{/app/{id}/edit(id=*{id})}" >編集</a></td>
+				<td>
+					<form th:action="@{/app/{id}(id=*{id})}" th:method="delete">
+						<input class="btn btn-danger btn-xs" type="submit" value="削除" />
+					</form>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
+</body>
+</html>

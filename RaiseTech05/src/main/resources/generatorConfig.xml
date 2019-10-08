@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN" "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<generatorConfiguration>
+	<context id="MySQLTables" targetRuntime="MyBatis3">
+		<commentGenerator>
+            <property name="suppressDate" value="true" />
+        </commentGenerator>
+
+		<!-- スキーマ情報を取得するDBへの接続 -->
+        <jdbcConnection
+                driverClass="com.mysql.jdbc.Driver"
+                connectionURL="jdbc:mysql://localhost:3306/test_java"
+                userId="user01"
+                password="pass01">
+                <property name="nullCatalogMeansCurrent" value="true" />
+        </jdbcConnection>
+
+        <javaTypeResolver>
+            <property name="useJSR310Types" value="true"/>
+        </javaTypeResolver>
+
+		<!-- SELECT結果等格納するドメインモデルを生成 -->
+        <javaModelGenerator
+                targetPackage="com.dayapp.domain"
+                targetProject="RaiseTech05/src/main/java">
+            <property name="enableSubPackages" value="true" />
+        </javaModelGenerator>
+
+		<!-- SQL設定記述のXML生成 -->
+        <sqlMapGenerator
+                targetPackage="com.dayapp.mapper"
+                targetProject="RaiseTech05/src/main/resources">
+            <property name="enableSubPackages" value="true" />
+        </sqlMapGenerator>
+
+		<!-- マッパークラス生成 -->
+        <javaClientGenerator
+                targetPackage="com.dayapp.mapper"
+                targetProject="RaiseTech05/src/main/java" type="XMLMAPPER">
+            <property name="enableSubPackages" value="true" />
+        </javaClientGenerator>
+
+		<!-- コードを生成するテーブル指定 -->
+        <table schema="test_java"
+               tableName="business_days"
+               enableInsert="true"
+               enableSelectByPrimaryKey="true"
+               enableSelectByExample="false"
+               enableUpdateByPrimaryKey="true"
+               enableUpdateByExample="false"
+               enableDeleteByPrimaryKey="true"
+               enableDeleteByExample="false"
+               enableCountByExample="false"
+               selectByExampleQueryId="false"
+               modelType="flat">
+               <property name="useActualColumnNames" value="false"/>
+        </table>
+    </context>
+</generatorConfiguration>
