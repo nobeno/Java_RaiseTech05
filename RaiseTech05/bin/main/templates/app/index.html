@@ -9,14 +9,78 @@
 <body>
 
 <div class="container">
-	<h1 class="text-center m-3">業務日付一覧</h1>
-	<hr>
-	<div class="row m-4">
-		<div class="col-6">
-			2019.10.07
+<h1 class="text-center m-3">業務日付一覧</h1>
+<hr>
+
+<div class="row">
+	<div class="col-4">
+		<div class="form-group m-5">
+		<form th:action="@{/app/calculation}" method="post">
+			<label class="control-label" for="input">基準日</label>
+            	<input type="number" class="form-control" id="inputYear" name="inputYear" placeholder="例:2019"/>
+            	<input type="number" class="form-control mt-1" id="inputMonth" name="inputMonth" placeholder="例:10" />
+            	<input type="number" class="form-control mt-1" id="inputDay" name="inputDay" placeholder="例:25" />
+			<label class="control-label mt-2" for="inputMonth">月度選択</label>
+				<select class="form-control" id="addMonth" name="addMonth">
+            		<option value="">---</option>
+              		<option value="0">当月</option>
+              		<option value="1">翌月</option>
+              		<option value="2">翌々月</option>
+           		 </select>
+			<label class="control-label mt-2" for="selectDay">日付選択</label>
+				<select class="form-control" id="selectDay" name="selectDay">
+            	<option value="">---</option>
+              	<option value="0">末日</option>
+				<option value="1">1</option>
+				<option value="2">2</option>
+				<option value="3">3</option>
+				<option value="4">4</option>
+				<option value="5">5</option>
+				<option value="6">6</option>
+				<option value="7">7</option>
+				<option value="8">8</option>
+				<option value="9">9</option>
+				<option value="10">10</option>
+				<option value="11">11</option>
+				<option value="12">12</option>
+				<option value="13">13</option>
+				<option value="14">14</option>
+				<option value="15">15</option>
+				<option value="16">16</option>
+				<option value="17">17</option>
+				<option value="18">18</option>
+				<option value="19">19</option>
+				<option value="20">20</option>
+				<option value="21">21</option>
+				<option value="22">22</option>
+				<option value="23">23</option>
+				<option value="24">24</option>
+				<option value="25">25</option>
+				<option value="26">26</option>
+				<option value="27">27</option>
+				<option value="28">28</option>
+				<option value="29">29</option>
+				<option value="30">30</option>
+				<option value="31">31</option>
+            	</select>
+            <button class="btn btn-info mt-3" type="submit">計算</button>
+        </form>
 		</div>
-		<button class="col-2 btn btn-dark">計算</button>
 	</div>
+
+	<div class="col-5 col-offset-2 mt-5">
+		<p>計算結果</p>
+		<div class="border border-info rounded p-3">
+			<p>
+				<span th:text="${year}"></span>年
+				<span th:text="${month}"></span>月
+				<span th:text="${Day}"></span>日
+				<span th:text="${week}"></span>曜日
+			</p>
+		</div>
+	</div>
+</div>
+
 	<!--  <a class="btn btn-dark" href="/app/new">新規作成</a> -->
 
 	<div class="row m-5">
