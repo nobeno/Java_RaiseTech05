@@ -81,10 +81,8 @@
 	</div>
 </div>
 
-	<!--  <a class="btn btn-dark" href="/app/new">新規作成</a> -->
-
 	<div class="row m-5">
-      <div class="col-md-6">
+      <div class="col-5">
         <form th:action="@{/app/search}" method="get">
           <div class="input-group">
             <input type="text" name="keyword" class="form-control" placeholder="Search for..." />
@@ -94,8 +92,11 @@
           </div>
         </form>
       </div>
-      <div class="col-md-2">
+      <div class="col-2">
       	<a href="/app" class="btn btn-link">全表示</a>
+      </div>
+      <div class="col-4 col-offset-1">
+      	<a class="btn btn-dark" href="/app/new">新規作成</a>
       </div>
     </div>
 
