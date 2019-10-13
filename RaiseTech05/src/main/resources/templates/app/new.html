@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>業務日付登録</title>
+<link rel="stylesheet" href="/css/bootstrap.css" />
+<script src="/js/bootstrap.js"></script>
+</head>
+<body>
+<div class="container">
+	<h1>新規業務日付登録</h1>
+	<form th:action="@{/app}" th:method="post">
+		<div>
+			<label class="control-label">ID</label>
+			<input class="form-control" type="text" name="idDays"></input>
+		</div>
+		<div>
+			<label class="control-label">会社名</label>
+			<input class="form-control" type="text" name="name"></input>
+		</div>
+		<div>
+			<label class="control-label">業務日付</label>
+			<input class="form-control" type="text" name="day"></input>
+		</div>
+		<button class="btn btn-dark" type="submit">投稿</button>
+	</form>
+	<div>
+		<a class="btn btn-link" href="/app">一覧画面へ</a>
+	</div>
+</div>
+</body>
+</html>
