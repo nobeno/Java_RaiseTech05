@@ -18,8 +18,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.dayapp.apicontroller.ApiController;
 import com.dayapp.domain.BusinessDays;
 import com.dayapp.mapper.BusinessDaysMapper;
+import com.dayapp.service.BusinessDaysService;
 
 
 @Controller
@@ -29,6 +31,8 @@ public class BusinessDaysController {
 
 	@Autowired
 	BusinessDaysMapper businessDaysMapper;
+	ApiController apiController;
+	BusinessDaysService businessDaysService;
 
 	@GetMapping
 	public String index(Model model){
@@ -37,6 +41,18 @@ public class BusinessDaysController {
 		return "app/index";
 	}
 
+// 内部API呼び出してみるコード
+// serviceのとこでNULLになる なぜ？
+//	@RequestMapping(value = "/search*", method = RequestMethod.GET)
+//	  public ModelAndView search(HttpSession session,@RequestParam("keyword") Integer keyword){
+//	    ModelAndView mv = new ModelAndView();
+//	    mv.setViewName("app/index");
+//	    BusinessDays businessdays = businessDaysService.service(keyword);
+//	    int idDays = businessdays.getIdDays();
+//	    List<BusinessDays> list = businessDaysMapper.selectByIdDays(idDays);
+//	    mv.addObject("businessdays", list);
+//	    return mv;
+//	  }
 	@RequestMapping(value = "/search*", method = RequestMethod.GET)
 	  public ModelAndView search(@RequestParam Integer keyword){
 	    ModelAndView mv = new ModelAndView();
