@@ -40,18 +40,6 @@ public class BusinessDaysController {
 		return "app/index";
 	}
 
-// 内部API呼び出してみるコード
-// serviceのとこでNULLになる なぜ？
-//	@RequestMapping(value = "/search*", method = RequestMethod.GET)
-//	  public ModelAndView search(HttpSession session,@RequestParam("keyword") Integer keyword){
-//	    ModelAndView mv = new ModelAndView();
-//	    mv.setViewName("app/index");
-//	    BusinessDays businessdays = businessDaysService.service(keyword);
-//	    int idDays = businessdays.getIdDays();
-//	    List<BusinessDays> list = businessDaysMapper.selectByIdDays(idDays);
-//	    mv.addObject("businessdays", list);
-//	    return mv;
-//	  }
 	@RequestMapping(value = "/search*", method = RequestMethod.GET)
 	  public ModelAndView search(@RequestParam Integer keyword){
 	    ModelAndView mv = new ModelAndView();
