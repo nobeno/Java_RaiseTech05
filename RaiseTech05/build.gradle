@@ -1,7 +1,22 @@
+buildscript {
+	ext {
+		springBootVersion = '2.1.9.RELEASE'
+	}
+	repositories {
+		mavenCentral()
+	}
+	dependencies {
+		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+	}
+}
+
 plugins {
 	id 'org.springframework.boot' version '2.1.9.RELEASE'
 	id 'io.spring.dependency-management' version '1.0.8.RELEASE'
 	id 'java'
+	id 'eclipse-wtp'
+	id 'war'
+	id 'application'
 }
 
 group = 'com.dayapp'
@@ -9,10 +24,7 @@ version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '1.8'
 
 configurations {
-	developmentOnly
-	runtimeClasspath {
-		extendsFrom developmentOnly
-	}
+	providedRuntime
 }
 
 repositories {
@@ -24,9 +36,18 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:2.1.0'
-	developmentOnly 'org.springframework.boot:spring-boot-devtools'
 	runtimeOnly 'mysql:mysql-connector-java'
+	providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testImplementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter-test:2.1.0'
+	testImplementation('com.codeborne:selenide:5.5.0')
 	compile "com.fasterxml.jackson.core:jackson-databind"
+}
+
+defaultTasks 'test'
+
+test {
+	include 'com/dayapp/controller/*'
+	include 'com/dayapp/mapper/*'
+	include 'com/dayapp/view/*'
 }
